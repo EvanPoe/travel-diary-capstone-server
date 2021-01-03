@@ -88,6 +88,30 @@ itemRouter
   });
 
 itemRouter
+  .route("/public")
+  .all((req, res, next) => {
+    //connect to the service to get the data
+    ItemService.getPublicItems(req.app.get("db"))
+      .then((item) => {
+        if (!item) {
+          //if there is an error show it
+          return res.status(404).json({
+            error: {
+              message: `Item doesn't exist`,
+            },
+          });
+        }
+        res.item = item;
+        next();
+      })
+      .catch(next);
+  })
+  .get((req, res, next) => {
+    //get each one of the objects from the results
+    res.json(res.item);
+  });
+
+itemRouter
   .route("/:item_id")
   .all((req, res, next) => {
     if (isNaN(parseInt(req.params.item_id))) {
@@ -176,8 +200,7 @@ itemRouter
       .catch(next);
   });
 
-
-  itemRouter
+itemRouter
   .route("/user/:user_id")
   .all((req, res, next) => {
     if (isNaN(parseInt(req.params.user_id))) {
@@ -206,7 +229,8 @@ itemRouter
       .catch(next);
   })
   .get((req, res, next) => {
-    //get each one of the objects from the results and serialize them
-    res.json(serializeItem(res.item));
-  })
+    //get each one of the objects from the results
+    res.json(res.item);
+  });
+
 module.exports = itemRouter;

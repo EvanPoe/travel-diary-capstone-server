@@ -12,12 +12,18 @@ const ItemService = {
           .where('items.id', item_id)
           .first()
   },
+  getPublicItems(db) {
+      return db
+          .select('*')
+          .from('items')
+          .where('items.is_public', 1)
+  },
   getItemByUserId(db, user_id) {
       return db
           .select('*')
           .from('items')
           .where('items.user_id', user_id)
-          .first()
+          .orderBy('items.id', 'desc')
   },
   //relevant
   insertItem(db, newItem) {
