@@ -1,7 +1,7 @@
 {
-  "name": "workout-planner-capstone-server",
+  "name": "travel-diary-capstone-server",
   "version": "1.0.0",
-  "description": "A library for workouts based on workout type and difficulty.",
+  "description": "A hub for travel enthusiasts to store information and see public information stored by other users",
   "main": "server.js",
   "scripts": {
     "test": "mocha --require test/setup.js --watch",
