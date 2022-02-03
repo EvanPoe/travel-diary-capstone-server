@@ -10,7 +10,7 @@
    MIGRATION_DB_NAME=
    MIGRATION_DB_USER=
    MIGRATION_DB_PASS=
-   DATABASE_URL="postgresql://USERNAME@localhost/DATABASE_NAME"
+   DB_URL="postgresql://USERNAME@localhost/DB_NAME"
   ```
 * Run the command `npm run migrate -- 1` to create the database tables
 * run the command `npm t`
