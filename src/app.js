@@ -24,6 +24,8 @@ app.use(helmet())
 
 app.use(express.static('public'))
 
+//enable pre-flight across-the-board
+app.options('*', cors())
 
 //load in registration router (post a user to register)
 app.use('/api/users', usersRouter)
